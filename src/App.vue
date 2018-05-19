@@ -1,21 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h1>Witaj w systemie do zapisów na zajęcia</h1>
+        <div v-if=login>
+          <h2>Witaj {{email}}!</h2>
+          <button @click="wyloguj()">Wychodzę</button>
+        </div>
+        <div v-else>
+              <label>Zaloguj się e-mailem</label>
+              <input type="email" v-model="email">
+              <button @click="zaloguj()">Wchodzę</button>
+        </div>
+    
   </div>
 </template>
 
@@ -24,9 +19,19 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Hello World!!!'
+      email: 'email@gmail.com',
+      login: false
     }
+  },
+  methods: {
+  zaloguj() {
+    this.login = true;
+  },
+  wyloguj(){
+    this.login = false;
   }
+}
+  
 }
 </script>
 
