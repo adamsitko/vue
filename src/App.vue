@@ -2,12 +2,11 @@
   <div id="app">
     <h1>Witaj w systemie do zapisów na zajęcia</h1>
         <div v-if=login>
-          <h2>Witaj {{email}}!</h2>
-          <button @click="wyloguj()">Wychodzę</button>
+          <logoff-form @login="logMeOut($event)" :email="email"></logoff-form>
         </div>
         <div v-else>
       <login-form @login="logMeIn($event)"></login-form>
-      <login-form @login="logMeIn($event)" :button-label="'Zaloguj się jak człowiek'"></login-form>
+      
         </div>
     
   </div>
@@ -16,8 +15,9 @@
 <script>
 import "milligram";
 import LoginForm from "./LoginForm";
+import LogoffForm from "./LogoffForm";
 export default {
-  components: {LoginForm},
+  components: {LoginForm, LogoffForm},
   name: 'app',
   data () {
     return {
@@ -26,8 +26,8 @@ export default {
     }
   },
   methods: {
-  wyloguj(){
-    this.login = false;
+  logMeOut(status){
+    this.login = status;
   },
   logMeIn(username) {
   this.email = username;
