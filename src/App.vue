@@ -6,9 +6,8 @@
           <button @click="wyloguj()">Wychodzę</button>
         </div>
         <div v-else>
-              <label>Zaloguj się e-mailem</label>
-              <input type="email" v-model="email">
-              <button @click="zaloguj()">Wchodzę</button>
+      <login-form @login="logMeIn($event)"></login-form>
+      <login-form @login="logMeIn($event)" :button-label="'Zaloguj się jak człowiek'"></login-form>
         </div>
     
   </div>
@@ -16,8 +15,9 @@
 
 <script>
 import "milligram";
-
+import LoginForm from "./LoginForm";
 export default {
+  components: {LoginForm},
   name: 'app',
   data () {
     return {
@@ -26,12 +26,14 @@ export default {
     }
   },
   methods: {
-  zaloguj() {
-    this.login = true;
-  },
   wyloguj(){
     this.login = false;
-  }
+  },
+  logMeIn(username) {
+  this.email = username;
+  this.login = true;
+}
+  
 }
   
 }
@@ -46,21 +48,17 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 h1, h2 {
   font-weight: normal;
 }
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
 }
-
 a {
   color: #42b983;
 }
