@@ -2,11 +2,14 @@
    <div>
        <h2>Witaj {{printEmail}}!</h2>
        <button @click="enter()">{{buttonLabelDisp}}</button>
+       <meeting-page></meeting-page>
    </div>
 </template>
 
 <script>
+import MeetingPage from "./meetings/MeetingPage";
 export default {
+components: {MeetingPage},    
 props: ['email', "buttonLabel"],
 
     data() {
